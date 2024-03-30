@@ -31,7 +31,9 @@ jobs:
           DB_NAME: ${{ secrets.DB_NAME }}
           DB_USER: ${{ secrets.DB_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          FTP_HOST_AC: ${{ secrets.FTP_HOST_AC }}
+          FTP_USER_AC: ${{ secrets.FTP_USER_AC }}
+          FTP_PASSWORD_AC: ${{ secrets.FTP_PASSWORD_AC }}
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USER: ${{ secrets.FTP_USER }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-          FTP_PATH: ${{ secrets.FTP_PATH }}
