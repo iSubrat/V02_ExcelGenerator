@@ -53,7 +53,10 @@ try:
     # session.cwd(ftp_path)
 
     with open("Meeting Data.xlsx", 'rb') as file:
-        session.storbinary('STOR Meeting_Data_' + current_timestamp + '.xlsx', file)
+        session.storbinary('STOR Meeting_Data.xlsx', file)
+        
+    # with open("Meeting Data.xlsx", 'rb') as file:
+    #     session.storbinary('STOR Meeting_Data_' + current_timestamp + '.xlsx', file)
     
     session.quit()
     print('Excel File uploaded to the Server.')
