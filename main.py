@@ -17,7 +17,7 @@ ftp_path = os.environ['FTP_PATH']
 
 try:
     print('Script Running...')
-    # Updated to match the new schema
+    # Columns updated to reflect the database schema and removal of manual duration calculation
     df = pd.DataFrame(columns=['ID', 'Tutor Name', 'End Date', 'Session Type', 'Student First Name',
                                'Student Middle Name', 'Student Last Name', 'Parent First Name', 'Parent Second Name',
                                'Grade', 'Class Status', 'Comments', 'Start Time', 'End Time', 'Duration (Hrs)',
@@ -35,17 +35,12 @@ try:
     query = ("SELECT id, tutor_name, end_date, session_type, student_first, student_mid, student_last, parent_first, parent_sec, grade, class_status, comments, start_time, end_time, duration, meeting_id, amount, subject, topic, homework_status, homework_assigned, test_conducted, test_score, country, meeting_link, created_at FROM tutor_sessions ORDER BY id DESC LIMIT 10000")
     cursor.execute(query)
     for row in cursor:
-        # Update the DataFrame row directly with the fetched data
+        # Directly use the 'duration' from the database
         df.loc[len(df.index)] = row
 
     # Replace any unwanted characters
     df = df.replace({'': ''}, regex=True)
     
-    # Convert 'Start Time' and 'End Time' to datetime, and recalculate 'Duration (Hrs)'
-    df['Start Time'] = pd.to_datetime(df['Start Time'], format='%H:%M:%S')
-    df['End Time'] = pd.to_datetime(df['End Time'], format='%H:%M:%S')
-    df['Duration (Hrs)'] = (df['End Time'] - df['Start Time']).dt.seconds / 3600
-
     # Export to Excel
     df.to_excel("Meeting Data.xlsx", index=False)
     current_timestamp = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
