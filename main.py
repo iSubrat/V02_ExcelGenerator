@@ -10,12 +10,14 @@ db_port = os.environ['DB_PORT']
 db_name = os.environ['DB_NAME']
 db_user = os.environ['DB_USER']
 db_password = os.environ['DB_PASSWORD']
-ftp_host = os.environ['FTP_HOST']
-ftp_user = os.environ['FTP_USER']
-ftp_password = os.environ['FTP_PASSWORD']
+
 ftp_host_ac = os.environ['FTP_HOST_AC']
 ftp_user_ac = os.environ['FTP_USER_AC']
 ftp_password_ac = os.environ['FTP_PASSWORD_AC']
+
+ftp_host = os.environ['FTP_HOST']
+ftp_user = os.environ['FTP_USER']
+ftp_password = os.environ['FTP_PASSWORD']
 
 try:
     print('Script Running...')
@@ -56,7 +58,7 @@ try:
     with open("Meeting Data.xlsx", 'rb') as file:
         session.storbinary('STOR Meeting_Data_' + current_timestamp + '.xlsx', file)
     session.quit()
-    print('Excel File uploaded to the AppCollection's Server.')
+    print("Excel File uploaded to the AppCollection's Server.")
 
     
     session = ftplib.FTP(ftp_host, ftp_user, ftp_password)
@@ -65,6 +67,6 @@ try:
         session.storbinary('STOR Meeting_Data.xlsx', file)
     
     session.quit()
-    print('Excel File uploaded to the Shilpa's Server.')
+    print("Excel File uploaded to the Shilpa's Server.")
 except Exception as e:
     print(e)
