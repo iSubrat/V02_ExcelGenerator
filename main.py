@@ -60,13 +60,14 @@ try:
     session.quit()
     print("Excel File uploaded to the AppCollection's Server.")
 
-    
-    session = ftplib.FTP(ftp_host, ftp_user, ftp_password)
-    
-    with open("Meeting Data.xlsx", 'rb') as file:
-        session.storbinary('STOR Meeting_Data.xlsx', file)
-    
-    session.quit()
-    print("Excel File uploaded to the Shilpa's Server.")
+
+    if datetime.datetime.now() <= datetime.datetime(2024, 4, 5): # Year, Month, Day
+        session = ftplib.FTP(ftp_host, ftp_user, ftp_password)
+        
+        with open("Meeting Data.xlsx", 'rb') as file:
+            session.storbinary('STOR Meeting_Data.xlsx', file)
+        
+        session.quit()
+        print("Excel File uploaded to the Shilpa's Server.")
 except Exception as e:
     print(e)
