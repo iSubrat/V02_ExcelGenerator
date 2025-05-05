@@ -61,7 +61,7 @@ try:
     print("Excel File uploaded to the AppCollection's Server.")
 
 
-    if datetime.datetime.now() <= datetime.datetime(2025, 5, 5): # Year, Month, Day
+    if datetime.datetime.now() <= datetime.datetime(2025, 6, 5): # Year, Month, Day
         session = ftplib.FTP(ftp_host, ftp_user, ftp_password)
         
         with open("Meeting Data.xlsx", 'rb') as file:
